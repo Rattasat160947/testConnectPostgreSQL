@@ -1,14 +1,32 @@
 package main
 
-import "fmt"
+type Speck interface{
+	Speck() string
+}
+
+type Dog struct {
+	Name string
+}
+
+func (d Dog) Speck() string {
+	return  "Woof!"
+}
+ type Person struct {
+	Name string
+ }
+
+func (p Person) Speck() string {
+	return "Hello!"
+}
+
+func makeSound(s Speck) {
+	println(s.Speck())
+}
 
 func main() {
-	const message = "Hello, World!"
-	fmt.Println(message)
-	for i := 1;i<=5;i++{
-		fmt.Println("*")
-		for j:=1;j<i;j++{
-			fmt.Print("*")
-		}
-	}
+ dog := Dog{Name: "Buddy"}
+ person := Person{Name: "Alice"}
+
+ makeSound(dog)
+ makeSound(person)
 }
