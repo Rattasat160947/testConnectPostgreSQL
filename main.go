@@ -1,32 +1,18 @@
 package main
 
-type Speck interface{
-	Speck() string
+import "fmt"
+
+type Employee struct {
+	Name   string
+	Salary int
 }
 
-type Dog struct {
-	Name string
-}
-
-func (d Dog) Speck() string {
-	return  "Woof!"
-}
- type Person struct {
-	Name string
- }
-
-func (p Person) Speck() string {
-	return "Hello!"
-}
-
-func makeSound(s Speck) {
-	println(s.Speck())
+func giveRaise(e *Employee, giveRaise int) {
+	e.Salary += giveRaise
 }
 
 func main() {
- dog := Dog{Name: "Buddy"}
- person := Person{Name: "Alice"}
-
- makeSound(dog)
- makeSound(person)
+	emp := Employee{Name: "John", Salary: 50000}
+	giveRaise(&emp, 5000)
+	fmt.Println("After raise: ", emp)
 }
