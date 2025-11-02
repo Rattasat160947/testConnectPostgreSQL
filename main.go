@@ -1,18 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
-type Employee struct {
-	Name   string
-	Salary int
-}
-
-func giveRaise(e *Employee, giveRaise int) {
-	e.Salary += giveRaise
+func divide(a, b int) (int, error) {
+	if b == 0 {
+		return 0, errors.New("division by zero")
+	}
+	return a / b, nil
 }
 
 func main() {
-	emp := Employee{Name: "John", Salary: 50000}
-	giveRaise(&emp, 5000)
-	fmt.Println("After raise: ", emp)
+	result, err := divide(10, 0)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	fmt.Println("Result:", result)
 }
